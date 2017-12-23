@@ -4,7 +4,6 @@ namespace App\Http\Controllers\V1;
 
 use App\Http\Controllers\Controller;
 use config\Twitter;
-use Abraham\TwitterOAuth\TwitterOAuth;
 
 use GuzzleHttp\Client;
 use GuzzleHttp\HandlerStack;
@@ -37,7 +36,6 @@ class TwitterController extends Controller
         ]);
 
         $this->connection = $client;
-
     }
 
     public function index()
