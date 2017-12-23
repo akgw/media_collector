@@ -41,9 +41,12 @@ class TwitterController extends Controller
 
     public function index(Requests\SearchRequest $request)
     {
-        $word = $request->input('word') ?: '夜景,きれい OR キレイ OR 綺麗';
+        $word = $request->input('word') ?: '柴犬';
 
-        $tweets_params = ['q' => $word, 'count' => '10'];
+        $filter = $request->input('filter') ?: 'media';
+        $word .= ' filter:' . $filter;
+
+        $tweets_params = ['q' => $word, 'count' => '30'];
 
         $response = $this->connection->get('search/tweets.json', ['query' => $tweets_params]);
 
@@ -55,6 +58,7 @@ class TwitterController extends Controller
         return view('tweet')->with([
             'tweets' => $body->statuses,
             'word' => $word,
+            'filter' => $filter,
         ]);
     }
 }

@@ -12,27 +12,27 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
 
-
         <nav class="navbar fixed-top navbar-toggleable-md navbar-light bg-faded">
             <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
-            <a class="navbar-brand" href="#">TwitterClient</a>
+            <a class="navbar-brand" href="{{ url('/v1/twitter') }}">TwitterClient</a>
 
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav mr-auto" style="line-height:2">
-                    <li class="nav-item active">
-                        <a class="nav-link" href="{{ url('/v1/twitter') }}">Home <span class="sr-only">(current)</span></a>
+                    <li class=@if ($filter === 'media') "nav-item active" @else "nav-item" @endif>
+                        <a class="nav-link" href="{{ url('/v1/twitter') }}">通常検索<span class="sr-only">(current)</span></a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Link</a>
+                    <li class=@if ($filter === 'images') "nav-item active" @else "nav-item" @endif>
+                        <a class="nav-link" href="{{ url('/v1/twitter') . '?filter=images' }}">画像検索<span class="sr-only">(current)</span></a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link disabled" href="#">Disabled</a>
+                    <li class=@if ($filter === 'videos') "nav-item active" @else "nav-item" @endif>
+                        <a class="nav-link" href="{{ url('/v1/twitter') . '?filter=videos' }}">動画検索<span class="sr-only">(current)</span></a>
                     </li>
                 </ul>
                 <span class="navbar-text" style="line-height:2">{{ $word }}　 </span>
                 <form class="form-inline my-2 my-lg-0" method="get" action="twitter">
+                    <input type="hidden" name="filter" value="{{ request('filter', 'media') }}">
                     <input class="form-control mr-sm-2" type="text" name="word" placeholder="search">
                     <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
                 </form>
