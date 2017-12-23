@@ -4,9 +4,7 @@ namespace App\Http\Controllers\V1;
 
 use App\Http\Controllers\Controller;
 use config\Twitter;
-use Illuminate\Http\Request;
 use Abraham\TwitterOAuth\TwitterOAuth;
-
 
 class TwitterController extends Controller
 {
@@ -20,16 +18,15 @@ class TwitterController extends Controller
 
     public function index()
     {
-        $tweets_params = ['q' => '夜景,きれい OR キレイ OR 綺麗' ,'count' => '10'];
+        $tweets_params = ['q' => '夜景,きれい OR キレイ OR 綺麗', 'count' => '10'];
 
         $response = $this->connection->get('search/tweets', $tweets_params);
 
         if (empty($response->statuses)) {
             return view('tweet');
         }
+
         \Debugbar::info($response->statuses);
         return view('tweet')->with('tweets', $response->statuses);
     }
-
-
 }

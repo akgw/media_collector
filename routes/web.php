@@ -11,7 +11,7 @@
 |
 */
 
-Route::group(['namespace' => 'V1', 'prefix' => 'v1'], function() {
+Route::group(['namespace' => 'V1', 'prefix' => 'v1'], function () {
     Route::get('/twitter', 'TwitterController@index');
 });
 

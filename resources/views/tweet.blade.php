@@ -39,15 +39,27 @@
         </nav>
 
     </head>
-    <body>
-        <div class="container" style="padding-top: 70px;">
+    <body class="bg-inverse">
+    <div class="container" style="padding-top: 70px;">
             @foreach($tweets as $tweet)
-                <ul class="list-unstyled">
+            @if ($loop->index % 2 == 0)
+                @php $bg_color = '#4168c0' @endphp
+            @else
+                @php $bg_color = '#f7f7f7' @endphp
+            @endif
+                <ul class="list-unstyled" style="background-color:{{$bg_color}}">
                     <li class="media">
-                        <img class="d-flex mr-3" src={{ $tweet->user->profile_image_url_https }} alt="Generic placeholder image">
-                        <div class="media-body">
+                        <img class="rounded-circle d-flex mr-3" src={{ $tweet->user->profile_image_url_https }} alt="Generic placeholder image">
+                        <div class="media-body text-dark">
                             <h5 class="mt-0 mb-1">{{ $tweet->user->screen_name }}</h5>
                             {{ $tweet->text }}
+                            <br />
+                            @if (isset($tweet->entities->media))
+                                @foreach($tweet->entities->media as $media)
+                                    <img class="img-thumbnail w-25 p-1" src={{ $media->media_url_https }} alt="Generic placeholder image">
+                                @endforeach
+                            @endif
+
                         </div>
                     </li>
                 </ul>
