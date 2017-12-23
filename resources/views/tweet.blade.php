@@ -54,12 +54,11 @@
                             <h5 class="mt-0 mb-1">{{ $tweet->user->screen_name }}</h5>
                             {{ $tweet->text }}
                             <br />
-                            @if (isset($tweet->entities->media))
-                                @foreach($tweet->entities->media as $media)
+                            @if (isset($tweet->extended_entities->media))
+                                @foreach($tweet->extended_entities->media as $media)
                                     <img class="img-thumbnail w-25 p-1" src={{ $media->media_url_https }} alt="Generic placeholder image">
                                 @endforeach
                             @endif
-
                         </div>
                     </li>
                 </ul>
