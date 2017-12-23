@@ -1,0 +1,25 @@
+<?php
+namespace PhpCsFixer;
+
+return Config::create()
+    ->setRiskyAllowed(true)
+    ->setRules([
+            '@PSR2' => true,
+            'array_syntax' => ['syntax' => 'short'],
+            'ereg_to_preg' => true,
+            'function_typehint_space' => true,
+            'no_unused_imports' => true,
+            'no_empty_comment' => true,
+            'no_empty_phpdoc' => true,
+            'no_whitespace_before_comma_in_array' => true,
+            'return_type_declaration' => true,
+            'ternary_operator_spaces' => true,
+            'whitespace_after_comma_in_array' => true,
+            'psr4' => true,
+    ])
+    ->setFinder(
+        Finder::create()
+            ->exclude('resources')
+            ->in(__DIR__)
+    )
+;
