@@ -27,16 +27,8 @@ class TwitterController extends Controller
         if (empty($response->statuses)) {
             return view('tweet');
         }
-        $tweets = [];
-        foreach ($response->statuses as $key =>  $status) {
-            $tweets[$key] = [
-              'text' => $status->text,
-            ];
-        }
-
-
-
-        return view('tweet')->with('tweets', $tweets);
+        \Debugbar::info($response->statuses);
+        return view('tweet')->with('tweets', $response->statuses);
     }
 
 
