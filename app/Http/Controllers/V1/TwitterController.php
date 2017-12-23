@@ -4,6 +4,7 @@ namespace App\Http\Controllers\V1;
 
 use App\Http\Controllers\Controller;
 use config\Twitter;
+use App\Http\Requests;
 
 use GuzzleHttp\Client;
 use GuzzleHttp\HandlerStack;
@@ -38,9 +39,11 @@ class TwitterController extends Controller
         $this->connection = $client;
     }
 
-    public function index()
+    public function index(Requests\SearchRequest $request)
     {
-        $tweets_params = ['q' => '夜景,きれい OR キレイ OR 綺麗', 'count' => '10'];
+        $word = $request->input('word') ?: '夜景,きれい OR キレイ OR 綺麗';
+
+        $tweets_params = ['q' => $word, 'count' => '10'];
 
         $response = $this->connection->get('search/tweets.json', ['query' => $tweets_params]);
 
@@ -49,6 +52,9 @@ class TwitterController extends Controller
         }
         $body = json_decode($response->getBody()->getContents());
 
-        return view('tweet')->with('tweets', $body->statuses);
+        return view('tweet')->with([
+            'tweets' => $body->statuses,
+            'word' => $word,
+        ]);
     }
 }

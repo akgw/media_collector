@@ -20,7 +20,7 @@
             <a class="navbar-brand" href="#">TwitterClient</a>
 
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav mr-auto">
+                <ul class="navbar-nav mr-auto" style="line-height:2">
                     <li class="nav-item active">
                         <a class="nav-link" href="{{ url('/v1/twitter') }}">Home <span class="sr-only">(current)</span></a>
                     </li>
@@ -31,8 +31,9 @@
                         <a class="nav-link disabled" href="#">Disabled</a>
                     </li>
                 </ul>
-                <form class="form-inline my-2 my-lg-0">
-                    <input class="form-control mr-sm-2" type="text" placeholder="Search">
+                <span class="navbar-text" style="line-height:2">{{ $word }}　 </span>
+                <form class="form-inline my-2 my-lg-0" method="get" action="twitter">
+                    <input class="form-control mr-sm-2" type="text" name="word" placeholder="search">
                     <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
                 </form>
             </div>
