@@ -52,14 +52,22 @@
                     <li class="media">
                         <img class="rounded-circle d-flex mr-3" src={{ $tweet->user->profile_image_url_https }} alt="Generic placeholder image">
                         <div class="media-body text-dark">
-                            <h5 class="mt-0 mb-1">{{ $tweet->user->screen_name }}</h5>
+                            <h5 class="mt-0 mb-1">{{$tweet->user->name}} {{ $tweet->user->screen_name }}</h5>
                             {{ $tweet->text }}
                             <br />
+                            {{--extended_entities--}}
                             @if (isset($tweet->extended_entities->media))
                                 @foreach($tweet->extended_entities->media as $media)
-                                    <img class="img-thumbnail w-25 p-1" src={{ $media->media_url_https }} alt="Generic placeholder image">
+                                    @if ($media->type === 'photo')
+                                        <img class="img-thumbnail w-25 p-1" src={{ $media->media_url_https }} alt="Generic placeholder image">
+                                    @elseif ($media->type === 'video')
+                                        @if (isset($media->video_info->variants))
+                                            <video class="img-thumbnail" src="{{ $media->video_info->variants[0]->url }}" controls loop preload="metadata"></video>
+                                        @endif
+                                    @endif
                                 @endforeach
                             @endif
+
                         </div>
                     </li>
                 </ul>

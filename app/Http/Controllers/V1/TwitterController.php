@@ -44,7 +44,7 @@ class TwitterController extends Controller
         $word = $request->input('word') ?: '柴犬';
 
         $filter = $request->input('filter') ?: 'media';
-        $word .= ' filter:' . $filter;
+        $word .= ' filter:' . $filter . ' exclude:retweets';
 
         $tweets_params = ['q' => $word, 'count' => '30'];
 
@@ -54,7 +54,7 @@ class TwitterController extends Controller
             return view('tweet');
         }
         $body = json_decode($response->getBody()->getContents());
-
+        
         return view('tweet')->with([
             'tweets' => $body->statuses,
             'word' => $word,
