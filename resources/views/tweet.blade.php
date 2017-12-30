@@ -1,4 +1,4 @@
-@extends('layouts.parent')
+@extends('layouts.pc')
 
 @section('content')
     @foreach($tweets as $tweet)
