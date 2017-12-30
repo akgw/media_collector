@@ -13,6 +13,11 @@
 
 Route::get('/twitter', 'TwitterController@index');
 
+Route::get('/oauth/request', 'LoginController@redirectGoogleAuthorization');
+Route::get('/oauth/response', 'LoginController@login');
+
+
+
 
 Route::get('/', function () {
     return view('welcome');

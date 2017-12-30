@@ -99,4 +99,15 @@ return [
         ],
     ],
 
+
+    /**
+     * クライアントID
+     */
+    'googleClientId' => env('GOOGLE_CLIENT_ID', ''),
+
+    /**
+     * クライアントシークレット
+     */
+    'googleClientSecret' => env('GOOGLE_CLIENT_SECRET', ''),
+
 ];
