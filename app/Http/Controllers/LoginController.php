@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Service\Token;
 use Illuminate\Http\Request;
 use GuzzleHttp\Client;
 
@@ -30,6 +31,7 @@ class LoginController extends Controller
      * ログイン処理
      *
      * @param Request $request
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function login(Request $request)
     {
@@ -60,11 +62,9 @@ class LoginController extends Controller
         }
         $tokens = json_decode((string)$response->getBody());
 
-        session([
-            'accessToken' => $tokens->access_token,
-            'idToken' => $tokens->id_token,
-            'hoge' => 1,
-        ]);
+        $token = new Token();
+
+        $token->setTokensToClient($tokens);
 
         // ログインOKなのでリダイレクト
         return redirect('/twitter');

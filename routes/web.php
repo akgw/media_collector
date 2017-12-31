@@ -11,14 +11,16 @@
 |
 */
 
-Route::get('/twitter', 'TwitterController@index');
+Route::middleware(['authentication'])->group(function () {
+    Route::get('/', 'TwitterController@index');
+    Route::get('/twitter', 'TwitterController@index');
+});
 
 Route::get('/oauth/request', 'LoginController@redirectGoogleAuthorization');
 Route::get('/oauth/response', 'LoginController@login');
 
+Route::get('/logout', 'LogoutController@logout');
 
 
 
-Route::get('/', function () {
-    return view('welcome');
-});
+
