@@ -20,7 +20,3 @@ Route::get('/oauth/request', 'LoginController@redirectGoogleAuthorization');
 Route::get('/oauth/response', 'LoginController@login');
 
 Route::get('/logout', 'LogoutController@logout');
-
-
-
-

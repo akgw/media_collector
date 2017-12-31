@@ -5,7 +5,6 @@ namespace App\Http\Service;
 use Lcobucci\JWT\Parser;
 use Lcobucci\JWT\ValidationData;
 
-
 class Token
 {
     public function getTokensFromClient()
@@ -58,6 +57,4 @@ class Token
 
         return true;
     }
-
-
 }

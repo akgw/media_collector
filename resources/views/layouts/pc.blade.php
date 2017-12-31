@@ -34,10 +34,10 @@
                 <input class="form-control mr-sm-2" type="text" name="word" placeholder="search">
                 <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
             </form>
-            <a class="btn btn-outline-primary btn-sm" href="/oauth/request" role="button">ログイン</a>
-            <a class="btn btn-outline-danger btn-sm" href="/logout" role="button">ログアウト</a>
-
-
+            <span class="form-inline my-2 my-lg-0">
+                <a class="btn btn-outline-primary my-2 my-sm-0" href="/oauth/request" role="button">ログイン</a>
+                <a class="btn btn-outline-danger my-2 my-sm-0" href="/logout" role="button">ログアウト</a>
+            </span>
         </div>
     </nav>
 </header>

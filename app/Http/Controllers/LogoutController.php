@@ -18,5 +18,4 @@ class LogoutController extends Controller
 
         return view('logout/complete');
     }
-
 }
